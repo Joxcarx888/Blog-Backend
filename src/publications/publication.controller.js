@@ -142,7 +142,6 @@ export const updatePost = async (req, res) => {
     }
 };
 
-// Eliminar publicación (sin validación de dueño)
 export const deletePost = async (req, res) => {
     try {
         const { id } = req.params;
@@ -209,3 +208,21 @@ export const addCommentToPost = async (req, res) => {
         });
     }
 };
+
+export const getPostByIdWithComments = async (req, res) => {
+    try {
+      const { id } = req.params;
+  
+      const post = await Publication.findById(id)
+        .populate("comments")
+        .exec();
+  
+      if (!post) {
+        return res.status(404).json({ success: false, message: "Publicación no encontrada" });
+      }
+  
+      res.status(200).json({ success: true, post });
+    } catch (error) {
+      res.status(500).json({ success: false, message: "Error al obtener la publicación", error });
+    }
+  };

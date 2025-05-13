@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { check } from "express-validator";
-import { savePost, updatePost, listPosts, listPostsByCategory, deletePost, addCommentToPost } from "./publication.controller.js";
+import { savePost, updatePost, listPosts, listPostsByCategory, deletePost, addCommentToPost, getPostByIdWithComments } from "./publication.controller.js";
 import { validarCampos } from "../middlewares/validar-campos.js";
 import { existentePublication } from "../helpers/db-validator.js";
 
@@ -34,6 +34,11 @@ router.get("/",
 router.get(
   "/:categoryName",
   listPostsByCategory
+);
+
+router.get(
+  '/details/:id',
+  getPostByIdWithComments
 );
 
 router.delete(
