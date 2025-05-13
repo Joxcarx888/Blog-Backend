@@ -29,6 +29,45 @@ export const dbConnection = async () => {
             } catch (error) {
                 console.error("Error al verificar/crear categoría:", error);
             }
+
+            try {
+                const tallerCategory = await Category.findOne({ name: "Taller" });
+                if (!tallerCategory) {
+                    await Category.create({ name: "Taller" });
+                    console.log("Categoría 'Taller' creada");
+                } else {
+                    console.log("Categoría 'Taller' ya existe");
+                }
+
+            } catch (error) {
+                console.error("Error al verificar/crear categoría:", error);
+            }
+
+            try {
+                const TecnologiaCategory = await Category.findOne({ name: "Tecnologia" });
+                if (!TecnologiaCategory) {
+                    await Category.create({ name: "Tecnologia" });
+                    console.log("Categoría 'Tecnologia' creada");
+                } else {
+                    console.log("Categoría 'Tecnologia' ya existe");
+                }
+
+            } catch (error) {
+                console.error("Error al verificar/crear categoría:", error);
+            }
+
+            try {
+                const PracticaSupervisada = await Category.findOne({ name: "PracticaSupervisada" });
+                if (!PracticaSupervisada) {
+                    await Category.create({ name: "PracticaSupervisada" });
+                    console.log("Categoría 'PracticaSupervisada' creada");
+                } else {
+                    console.log("Categoría 'PracticaSupervisada' ya existe");
+                }
+
+            } catch (error) {
+                console.error("Error al verificar/crear categoría:", error);
+            }
         });
 
         mongoose.connection.on('open', () => {
