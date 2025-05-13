@@ -214,6 +214,7 @@ export const getPostByIdWithComments = async (req, res) => {
       const { id } = req.params;
   
       const post = await Publication.findById(id)
+        .populate("category", "name")
         .populate("comments")
         .exec();
   
